@@ -2,36 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 
-const appName = "Писарева Виктория — CMO";
-
 export const metadata: Metadata = {
-  title: appName,
-  description: appName,
+  title: "Писарева Виктория — CMO",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ru">
-      <body className="antialiased min-h-screen bg-background flex flex-col">
-        <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
-          <div className="container mx-auto px-4 h-14 flex items-center justify-center">
-            <Link
-              href="/"
-              className="text-sm font-medium tracking-tight text-muted-foreground"
-            >
-              {appName}
-            </Link>
-          </div>
+      <body style={{margin:0,padding:0,minHeight:"100vh",display:"flex",flexDirection:"column",backgroundColor:"#fff",color:"#1d1d1f",fontFamily:"-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue',Arial,sans-serif",WebkitFontSmoothing:"antialiased"}}>
+        <header style={{position:"sticky",top:0,zIndex:50,borderBottom:"1px solid #d2d2d7",backgroundColor:"rgba(255,255,255,0.8)",backdropFilter:"blur(12px)",padding:"0 16px",height:"56px",display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <Link href="/" style={{fontSize:"14px",fontWeight:500,color:"#6e6e73",textDecoration:"none"}}>Писарева Виктория — CMO</Link>
         </header>
-        <main className="flex-1">{children}</main>
-        <footer className="border-t">
-          <div className="container mx-auto px-4 py-6 text-center text-xs text-muted-foreground">
-            © {new Date().getFullYear()} {appName}
-          </div>
+        <main style={{flex:1}}>{children}</main>
+        <footer style={{borderTop:"1px solid #d2d2d7",padding:"24px 16px",textAlign:"center",fontSize:"12px",color:"#6e6e73"}}>
+          © {new Date().getFullYear()} Писарева Виктория — CMO
         </footer>
       </body>
     </html>
