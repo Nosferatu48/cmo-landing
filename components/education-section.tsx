@@ -15,28 +15,28 @@ const iconMap: Record<string, React.ElementType> = {
 
 export function EducationSection() {
   return (
-    <section className="py-32 sm:py-40">
-      <div className="mx-auto max-w-5xl px-4">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-[#1d1d1f] sm:text-5xl">
+    <section style={{ padding: "128px 0" }}>
+      <div style={{ maxWidth: "1024px", margin: "0 auto", padding: "0 16px" }}>
+        <div style={{ textAlign: "center" }}>
+          <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, letterSpacing: "-0.02em", color: "#1d1d1f", margin: 0 }}>
             Образование
           </h2>
-          <p className="mt-4 text-lg text-[#6e6e73]">
+          <p style={{ marginTop: "16px", fontSize: "1.125rem", color: "#6e6e73" }}>
             Высшее образование и ключевые курсы
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2">
-          <div className="rounded-2xl border border-[#d2d2d7] p-6 transition-all hover:shadow-sm sm:col-span-2">
-            <div className="flex items-start gap-5">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#0071e3]/5 text-[#0071e3]">
-                <GraduationCap className="h-6 w-6" />
+        <div style={{ marginTop: "64px", display: "grid", gap: "24px", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" }}>
+          <div style={{ borderRadius: "16px", border: "1px solid #d2d2d7", padding: "24px", transition: "box-shadow 0.2s", gridColumn: "1 / -1" }}>
+            <div style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
+              <div style={{ width: "48px", height: "48px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "12px", backgroundColor: "rgba(0,113,227,0.05)", color: "#0071e3", flexShrink: 0 }}>
+                <GraduationCap size={24} />
               </div>
-              <div className="min-w-0 flex-1">
-                <h3 className="text-lg font-semibold text-[#1d1d1f]">{education.university.name}</h3>
-                <p className="mt-0.5 text-sm font-medium text-[#0071e3]">{education.university.faculty}</p>
-                <p className="mt-1 text-sm leading-relaxed text-[#6e6e73]">{education.university.specialty}</p>
-                <span className="mt-2 inline-block rounded-full bg-[#f5f5f7] px-2.5 py-0.5 text-xs text-[#6e6e73]">
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <h3 style={{ fontSize: "1.125rem", fontWeight: 600, color: "#1d1d1f", margin: 0 }}>{education.university.name}</h3>
+                <p style={{ marginTop: "2px", fontSize: "0.875rem", fontWeight: 500, color: "#0071e3", margin: 0 }}>{education.university.faculty}</p>
+                <p style={{ marginTop: "4px", fontSize: "0.875rem", lineHeight: 1.6, color: "#6e6e73" }}>{education.university.specialty}</p>
+                <span style={{ display: "inline-block", marginTop: "8px", borderRadius: "9999px", backgroundColor: "#f5f5f7", padding: "2px 10px", fontSize: "0.75rem", color: "#6e6e73" }}>
                   {education.university.year}
                 </span>
               </div>
@@ -46,17 +46,14 @@ export function EducationSection() {
           {education.courses.map((course) => {
             const Icon = iconMap[course.icon];
             return (
-              <div
-                key={course.title}
-                className="rounded-2xl border border-[#d2d2d7] p-6 transition-all hover:shadow-sm"
-              >
-                <div className="flex items-start gap-5">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#0071e3]/5 text-[#0071e3]">
-                    {Icon && <Icon className="h-6 w-6" />}
+              <div key={course.title} style={{ borderRadius: "16px", border: "1px solid #d2d2d7", padding: "24px", transition: "box-shadow 0.2s" }}>
+                <div style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
+                  <div style={{ width: "48px", height: "48px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "12px", backgroundColor: "rgba(0,113,227,0.05)", color: "#0071e3", flexShrink: 0 }}>
+                    {Icon && <Icon size={24} />}
                   </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="text-lg font-semibold text-[#1d1d1f]">{course.title}</h3>
-                    <p className="mt-1 text-sm text-[#6e6e73]">{course.source}</p>
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <h3 style={{ fontSize: "1.125rem", fontWeight: 600, color: "#1d1d1f", margin: 0 }}>{course.title}</h3>
+                    <p style={{ marginTop: "4px", fontSize: "0.875rem", color: "#6e6e73" }}>{course.source}</p>
                   </div>
                 </div>
               </div>
