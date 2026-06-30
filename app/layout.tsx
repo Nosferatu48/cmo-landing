@@ -11,22 +11,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="ru">
-      <body className="antialiased min-h-screen bg-white flex flex-col">
-        <header className="sticky top-0 z-50 w-full border-b border-[#d2d2d7] bg-white/80 backdrop-blur-md">
-          <div className="mx-auto max-w-5xl px-4 h-14 flex items-center justify-center">
-            <Link href="/" className="text-sm font-medium text-[#6e6e73] tracking-tight">
+      <body style={{ margin: 0, padding: 0, minHeight: "100vh", display: "flex", flexDirection: "column", backgroundColor: "#ffffff", color: "#1d1d1f", WebkitFontSmoothing: "antialiased" }}>
+        <header style={{ position: "sticky", top: 0, zIndex: 50, width: "100%", borderBottom: "1px solid #d2d2d7", backgroundColor: "rgba(255,255,255,0.8)", backdropFilter: "blur(12px)" }}>
+          <div style={{ maxWidth: "1024px", margin: "0 auto", padding: "0 16px", height: "56px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <Link href="/" style={{ fontSize: "14px", fontWeight: 500, color: "#6e6e73", textDecoration: "none" }}>
               {appName}
             </Link>
           </div>
         </header>
-        <main className="flex-1">{children}</main>
-        <footer className="border-t border-[#d2d2d7]">
-          <div className="mx-auto max-w-5xl px-4 py-6 text-center text-xs text-[#6e6e73]">
+        <main style={{ flex: 1 }}>{children}</main>
+        <footer style={{ borderTop: "1px solid #d2d2d7" }}>
+          <div style={{ maxWidth: "1024px", margin: "0 auto", padding: "24px 16px", textAlign: "center", fontSize: "12px", color: "#6e6e73" }}>
             © {new Date().getFullYear()} {appName}
           </div>
         </footer>
