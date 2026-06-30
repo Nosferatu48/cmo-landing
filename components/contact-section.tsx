@@ -20,7 +20,6 @@ export function ContactSection() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim() || !message.trim()) return;
-
     setStatus("loading");
     try {
       const res = await fetch("/api/send-telegram", {
@@ -28,7 +27,7 @@ export function ContactSection() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email: senderEmail, message }),
       });
-      if (!res.ok) throw new Error("Ошибка отправки");
+      if (!res.ok) throw new Error("Ошибка");
       setStatus("success");
       setName("");
       setSenderEmail("");
@@ -41,19 +40,19 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contacts" className="py-32 sm:py-40">
-      <div className="mx-auto max-w-5xl px-4">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-[#1d1d1f] sm:text-5xl">
+    <section id="contacts" style={{ padding: "128px 0" }}>
+      <div style={{ maxWidth: "1024px", margin: "0 auto", padding: "0 16px" }}>
+        <div style={{ textAlign: "center" }}>
+          <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, letterSpacing: "-0.02em", color: "#1d1d1f", margin: 0 }}>
             Контакты
           </h2>
-          <p className="mt-4 text-lg text-[#6e6e73]">
+          <p style={{ marginTop: "16px", fontSize: "1.125rem", color: "#6e6e73" }}>
             Свяжитесь со мной удобным способом
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-2">
-          <div className="flex flex-col gap-4">
+        <div style={{ marginTop: "64px", display: "grid", gap: "24px", gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             {contacts.map((contact) => {
               const Icon = contact.icon;
               return (
@@ -62,16 +61,16 @@ export function ContactSection() {
                   href={contact.href}
                   target={contact.label === "Email" ? undefined : "_blank"}
                   rel={contact.label === "Email" ? undefined : "noopener noreferrer"}
-                  className="block"
+                  style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  <div className="rounded-2xl border border-[#d2d2d7] p-6 transition-all hover:shadow-sm">
-                    <div className="flex items-center gap-5">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#0071e3]/5 text-[#0071e3]">
-                        <Icon className="h-6 w-6" />
+                  <div style={{ borderRadius: "16px", border: "1px solid #d2d2d7", padding: "24px", transition: "box-shadow 0.2s" }}>
+                    <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+                      <div style={{ width: "48px", height: "48px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "12px", backgroundColor: "rgba(0,113,227,0.05)", color: "#0071e3", flexShrink: 0 }}>
+                        <Icon size={24} />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-[#6e6e73]">{contact.label}</p>
-                        <p className="mt-0.5 text-base font-semibold text-[#1d1d1f]">{contact.value}</p>
+                        <p style={{ fontSize: "0.875rem", fontWeight: 500, color: "#6e6e73", margin: 0 }}>{contact.label}</p>
+                        <p style={{ marginTop: "2px", fontSize: "1rem", fontWeight: 600, color: "#1d1d1f", margin: 0 }}>{contact.value}</p>
                       </div>
                     </div>
                   </div>
@@ -80,46 +79,46 @@ export function ContactSection() {
             })}
           </div>
 
-          <div className="rounded-2xl border border-[#d2d2d7] p-6 sm:p-8 transition-all hover:shadow-sm">
-            <div className="mb-6 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0071e3]/5 text-[#0071e3]">
-                <MessagesSquare className="h-5 w-5" />
+          <div style={{ borderRadius: "16px", border: "1px solid #d2d2d7", padding: "32px", transition: "box-shadow 0.2s" }}>
+            <div style={{ display: "flex", gap: "12px", alignItems: "center", marginBottom: "24px" }}>
+              <div style={{ width: "40px", height: "40px", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "12px", backgroundColor: "rgba(0,113,227,0.05)", color: "#0071e3", flexShrink: 0 }}>
+                <MessagesSquare size={20} />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-[#1d1d1f]">Написать мне</h3>
-                <p className="text-sm text-[#6e6e73]">Заполните форму и я отвечу в ближайшее время</p>
+                <h3 style={{ fontSize: "1.125rem", fontWeight: 600, color: "#1d1d1f", margin: 0 }}>Написать мне</h3>
+                <p style={{ fontSize: "0.875rem", color: "#6e6e73", margin: 0 }}>Заполните форму и я отвечу</p>
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               <input
                 placeholder="Ваше имя *"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full rounded-xl border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] placeholder:text-[#6e6e73] focus:outline-none focus:ring-2 focus:ring-[#0071e3]"
+                style={{ width: "100%", borderRadius: "12px", border: "1px solid #d2d2d7", backgroundColor: "white", padding: "12px 16px", fontSize: "0.875rem", color: "#1d1d1f", outline: "none" }}
               />
               <input
                 type="email"
                 placeholder="Ваш email"
                 value={senderEmail}
                 onChange={(e) => setSenderEmail(e.target.value)}
-                className="w-full rounded-xl border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] placeholder:text-[#6e6e73] focus:outline-none focus:ring-2 focus:ring-[#0071e3]"
+                style={{ width: "100%", borderRadius: "12px", border: "1px solid #d2d2d7", backgroundColor: "white", padding: "12px 16px", fontSize: "0.875rem", color: "#1d1d1f", outline: "none" }}
               />
               <textarea
                 placeholder="Ваше сообщение *"
                 required
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full min-h-[120px] rounded-xl border border-[#d2d2d7] bg-white px-4 py-3 text-sm text-[#1d1d1f] placeholder:text-[#6e6e73] focus:outline-none focus:ring-2 focus:ring-[#0071e3]"
+                style={{ width: "100%", minHeight: "120px", borderRadius: "12px", border: "1px solid #d2d2d7", backgroundColor: "white", padding: "12px 16px", fontSize: "0.875rem", color: "#1d1d1f", outline: "none", resize: "vertical" }}
               />
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="inline-flex items-center gap-2 self-start rounded-full bg-[#0071e3] px-6 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#0077ed] disabled:opacity-50"
+                style={{ display: "inline-flex", alignItems: "center", gap: "8px", alignSelf: "flex-start", borderRadius: "9999px", backgroundColor: "#0071e3", padding: "10px 24px", fontSize: "0.875rem", fontWeight: 500, color: "white", border: "none", cursor: "pointer", transition: "background-color 0.2s", opacity: status === "loading" ? 0.5 : 1 }}
               >
                 {status === "loading" ? "Отправка..." : status === "success" ? "Отправлено ✓" : status === "error" ? "Ошибка" : "Отправить"}
-                <Send className="h-4 w-4" />
+                <Send size={16} />
               </button>
             </form>
           </div>
